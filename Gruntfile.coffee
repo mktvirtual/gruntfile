@@ -1,12 +1,12 @@
 module.exports = (grunt) ->
 
-    # chama o matchdep que carrega todas as tarefas nas quais o nome comece com "grunt-"
+    # Carrega todas as tarefas
     require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks)
+
     grunt.initConfig
 
-        # caminhos padrões para as pastas do seu projeto
-        # mude-as para adequar este Gruntfile para
-        # a árvore de diretórios do seu projeto
+        # Caminhos padrões para as pastas do seu projeto
+        # Adeque-a para a estruturação que você utiliza
         
         paths:
             assets: "assets/"
@@ -18,7 +18,7 @@ module.exports = (grunt) ->
             css:    "css/"
             js:     "js/"
 
-        # a tarefa "watch" dispara outras tarefas quando certos arquivos são alterados
+        # Tarefa Watch: dispara outras tarefas quando certos arquivos são alterados
         watch:
             options:
                 nospawn: true
@@ -32,23 +32,7 @@ module.exports = (grunt) ->
                 files: '<%= paths.assets %><%= paths.coffee %>**/*.coffee'
                 tasks: ['coffee', 'notify:coffee']
 
-        # TESTE: tarefa para injetar css e sincronizar browsers
-        # a tarefa em si ainda está em desenvolvimento
-        # Para utilizá-la, inclua os arquivos pedidos utilizando o seguinte código
-        # (testado apenas na plataforma OS X, possivelmente)
-        ###
-        $ifconfig = shell_exec('ifconfig');
-        preg_match('/(inet\s((\d{3})\.(\d{3})\.(\d)\.(.*))\snetmask)/', $ifconfig, $matches);
-        if (isset($matches[2]) && !empty($matches[2])){
-            $serverIP = $matches[2];
-            <script src="http://<?php echo $serverIP ?>:3000/socket.io/socket.io.js" ></script>
-            <script src="http://<?php echo $serverIP ?>:3001/browser-sync-client.min.js" ></script>
-        }
-        ###
-        #
-        # o Browser Sync analisa arquivos e atualiza os arquivos dinâmicamente, em todos os dispositivos conectados
-        #
-        # você pode acessar seu site através de http://seu-ip:3002/ em qualquer dispositivo e eles ficarão sincronizados
+        # Tarefa Browser-sync: sincroniza navegação e alterações em assets 
         browser_sync:
             files: [
                 '<%= paths.build %><%= paths.css %>**/*.css',
@@ -58,20 +42,15 @@ module.exports = (grunt) ->
                 '**/*.php'
             ]
             options:
-
-                # para ser utilizado com a task watch (também deve ser executado antes)
-                # a task default já roda as duas tarefas na sequência correta, basta executar no terminal:
-                # grunt
-                #
                 watchTask: true
 
-                # INCRÍVEL, mas experimental. Sincroniza informações de scroll, navegação por links e completar forms
                 ghostMode:
                     scroll: true
                     links: true
                     forms: true
+                    clicks: true
 
-        # tarefa para compilar CoffeeScript
+        # Tarefa Coffee: compila arquivos CoffeeScript
         coffee:
             options:
                 bare: true
@@ -83,8 +62,8 @@ module.exports = (grunt) ->
                 dest: '<%= paths.assets %><%= paths.js %>'
                 ext: '.js'
 
-        # task para compilar sass usando compass
-        # se você não está usando compass no seu projeto, veja grunt-contrib-sass e grunt-sass
+        # Tarefa Compass: compila arquivos sass usando o plugin compass
+        # Necessita ter o sass e o compass instalados na sua máquina
         compass:
             dist:
                 options:
@@ -95,13 +74,7 @@ module.exports = (grunt) ->
                     relativeAssets: true
                     raw: 'preferred_syntax = :sass\n'
 
-        # Otimização avançada de imagens
-        # para utilizá-la, instale o jpegMini (comprado pela Mkt na App Store),
-        # o imageOptim (http://imageoptim.com/) e o imageAlpha (http://pngmini.com/)
-        # ---
-        # A otimização por esta task é bastante demorada, principalmente se o site
-        # possui muitas imagens em alta-definição. Se você precisa de velocidade
-        # para uma alteração, utilize a imagemin, faça o deploy e depois rode a imageoptim.
+        # Tarefa Imageoptim: otimização avançada de imagens
         imageoptim:
             all:
                 options:
@@ -110,9 +83,7 @@ module.exports = (grunt) ->
                     quitAfter: true
                 src: ['<%= paths.assets %><%= paths.img %>']
 
-        # Otimização simples de imagens (sem dependências)
-        # Evite utilizar. A tarefa imageoptim é superior.
-        # Utilize apenas se você necessita de velocidade
+        # Tarefa Imagemin: otimização simples de imagens
         imagemin:
             dist:
                 options:
@@ -126,7 +97,7 @@ module.exports = (grunt) ->
                     dest: '<%= paths.build %><%= paths.img %>'
                 ]
 
-        # Concatena e comprime scripts
+        # Tarefa Uglify: concatena e comprime scripts
         uglify:
             options:
                 mangle: false
@@ -135,7 +106,7 @@ module.exports = (grunt) ->
                 files:
                     '<%= paths.build %><%= paths.js %>app.js': ['<%= paths.assets %><%= paths.js %>**/*.js', '!modernizr.min.js']
 
-        # contatena e minifica stylesheets
+        # Tarefa Cssmin: contatena e minifica stylesheets
         cssmin:
             minify:
                 expand: true
@@ -144,41 +115,7 @@ module.exports = (grunt) ->
                 dest: '<%= paths.build %><%= paths.css %>'
                 ext: '.css'
 
-        # notificação para conclusão de tarefas
-        notify:
-            compass:
-                options:
-                    title: "Compass",
-                    message: "Success"
-
-
-            coffee:
-                options:
-                    title: "CoffeeScript",
-                    message: "Success"
-
-
-            image:
-                options:
-                    title: "Imagemin",
-                    message: "Success"
-
-            compile:
-                options:
-                    title: "Compile"
-                    message: "Tarefa concluída"
-
-            build:
-                options:
-                    title: "Build"
-                    message: "Tarefa concluída"
-
-            minify:
-                options:
-                    title: "Minify"
-                    message: "Tarefa concluída"
-
-        # Mantém a qualidade de código CoffeeScript. Veja http://www.coffeelint.org/
+        # Tarefa Coffeelint: mantém a qualidade do código CoffeeScript
         coffeelint:
             options:
                 arrow_spacing:
@@ -196,13 +133,15 @@ module.exports = (grunt) ->
 
             app: ['<%= paths.assets %><%= paths.coffee %>**/*.coffee']
 
-    # registra nomes para conjutos de tarefas
+    # registro de nomes para conjuntos de tarefas
     grunt.registerTask( 'compile', ['coffee', 'compass'] )
     grunt.registerTask( 'build', ['compile', 'imageoptim'] )
     grunt.registerTask( 'minify', ['uglify', 'cssmin'] )
+
+    # excutada ao digitar apenas `grunt` na linha de comando
     grunt.registerTask( 'default', ['browser_sync', 'watch'] )
 
-    # Compilar apenas os scripts modificados
+    # compilar apenas os scripts modificados
     grunt.event.on( 'watch', (action, filepath) ->
         if grunt.file.isMatch( grunt.config('watch.coffee.files'), filepath )
             filepath = filepath.replace( grunt.config('coffee.all.cwd'), '' )
