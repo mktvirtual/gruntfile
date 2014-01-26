@@ -1,7 +1,7 @@
 module.exports = (grunt) ->
 
     # Carrega todas as tarefas
-    require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks)
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks)
 
     grunt.initConfig
 
@@ -9,14 +9,14 @@ module.exports = (grunt) ->
         # Adeque-a para a estruturação que você utiliza
         
         paths:
-            assets: "assets/"
-            coffee: "coffee/"
-            build:  "build/assets/"
-            fonts:  "fonts/"
-            sass:   "sass/"
-            img:    "img/"
-            css:    "css/"
-            js:     "js/"
+            assets: 'assets/'
+            coffee: 'coffee/'
+            build:  'build/assets/'
+            fonts:  'fonts/'
+            sass:   'sass/'
+            img:    'img/'
+            css:    'css/'
+            js:     'js/'
 
         # Tarefa Watch: dispara outras tarefas quando certos arquivos são alterados
         watch:
