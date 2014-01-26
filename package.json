@@ -1,0 +1,32 @@
+{
+  "name": "gruntfile",
+  "version": "0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mktvirtual/gruntfile"
+  },
+  "title": "Gruntfile",
+  "author": {
+    "name": "Hugo Bessa Silva de Oliveira",
+    "url": "http://www.hugobessa.com.br/",
+    "email": "hugobessaa[at]gmail.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-compass": "~0.5.0",
+    "grunt-contrib-imagemin": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-cssmin": "~0.6.2",
+    "grunt-coffeelint": "0.0.7",
+    "grunt-imageoptim": "~1.4.0",
+    "grunt-browser-sync": "~0.3.0",
+    "matchdep": "~0.1.2"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.1.0"
+  }
+}
