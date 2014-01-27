@@ -9,8 +9,14 @@
   "author": {
     "name": "Hugo Bessa Silva de Oliveira",
     "url": "http://www.hugobessa.com.br/",
-    "email": "hugobessaa[at]gmail.com"
+    "email": "hugo.bessa[at]mktvirtual.com.br"
   },
+  "contributors": [
+    {
+      "name": "Renato Rogrigues Galvão",
+      "email": "renato.galvao[at]mktvirtual.com.br"
+    }
+  ],
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
