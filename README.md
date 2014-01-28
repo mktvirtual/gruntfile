@@ -16,7 +16,7 @@ O `Gruntfile.coffee` deste repositório serve como uma base sólida para a autom
 Assumimos que você já tem o Grunt instalado na sua máquina de desenvolvimento. Para utilizá-lo execute os seguintes comandos:
 
 ```shell
-git clone git@github.com:mktvirtual/gruntfile.git gruntifile
+git clone git@github.com:mktvirtual/gruntfile.git gruntfile
 cd $_
 ```
 
