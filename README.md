@@ -17,7 +17,7 @@ Assumimos que você já tem o Grunt instalado na sua máquina de desenvolvimento
 
 ```shell
 git clone git@github.com:mktvirtual/gruntfile.git gruntfile
-cd $_
+cd gruntfile
 ```
 
 Copie os arquivos `package.json` e `Gruntfile.coffee` para a pasta do seu projeto e instale os plugins do Grunt usando o seguinte comando dentro da pasta:
