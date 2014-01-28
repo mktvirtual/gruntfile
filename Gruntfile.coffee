@@ -7,7 +7,7 @@ module.exports = (grunt) ->
 
         # Caminhos padrões para as pastas do seu projeto
         # Adeque-a para a estruturação que você utiliza
-        
+
         paths:
             assets: 'assets/'
             coffee: 'coffee/'
@@ -23,16 +23,16 @@ module.exports = (grunt) ->
             options:
                 nospawn: true
                 livereload: false
-            
+
             compass:
                 files: ['<%= paths.assets %><%= paths.sass %>**/*.{scss,sass}']
-                tasks: ['compass', 'notify:compass']
-            
+                tasks: ['compass']
+
             coffee:
                 files: '<%= paths.assets %><%= paths.coffee %>**/*.coffee'
-                tasks: ['coffee', 'notify:coffee']
+                tasks: ['coffee']
 
-        # Tarefa Browser-sync: sincroniza navegação e alterações em assets 
+        # Tarefa Browser-sync: sincroniza navegação e alterações em assets
         browser_sync:
             files: [
                 '<%= paths.build %><%= paths.css %>**/*.css',
@@ -120,7 +120,7 @@ module.exports = (grunt) ->
             options:
                 arrow_spacing:
                     'level': 'error'
-                max_line_length: 
+                max_line_length:
                     'level': 'ignore'
                 no_implicit_parens:
                     'level': 'error'
