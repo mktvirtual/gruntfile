@@ -68,7 +68,7 @@ module.exports = (grunt) ->
             dist:
                 options:
                     sassDir: '<%= paths.assets %><%= paths.sass %>'
-                    cssDir: '<%= paths.assets %><%= paths.css %>'
+                    cssDir: '<%= paths.build %><%= paths.css %>'
                     imagesDir: '<%= paths.assets %><%= paths.img %>'
                     fontsDir: '<%= paths.assets %><%= paths.fonts %>'
                     relativeAssets: true
