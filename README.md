@@ -1,4 +1,4 @@
-Gruntfile.coffee
+Gruntfile.js
 ================
 
 > Gruntfile padrão para iniciar rapidamente projetos com automação
